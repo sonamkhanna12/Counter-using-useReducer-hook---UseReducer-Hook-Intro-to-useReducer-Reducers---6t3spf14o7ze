@@ -1,7 +1,24 @@
-import React from 'react'
+import React,{useReducer} from 'react'
 import '../styles/App.css';
+const initialState = { count: 0 };
+// string constatnts
+const ACTIONS = {
+  DECREMENT: "decrement",
+  INCREMENT: "increment",
+};
+// (currentState,actionObject)=> newState
+function reducer(state, action) {
+  switch (action.type) {
+    case "add":
+      return { count: state.count + 1 };
+    case "delete":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
 const App = () => {
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div id="main">
       <h2>Task Counter</h2>
